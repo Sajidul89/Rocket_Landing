@@ -4,27 +4,29 @@ import gymnasium as gym
 env = gym.make("LunarLander-v3", render_mode="human")
 
 # Start a new landing attempt.
-observation, info = env.reset()
+observation = env.reset()
+info = env.reset()
 
 episode_reward = 0
 episode_number = 1
 
-# Run for up to 10 game steps.
+# Run 10 landing attemps
 while episode_number <= 10:
-    # Randomly choose an action.
+    # Randomly choose an action
     action = env.action_space.sample()
 
-    # Perform the action and get the result.
+    # Perform the action and get the result
     observation, reward, terminated, truncated, info = env.step(action)
 
-    episode_reward += reward
-    # Restart if the attempt ends.
+    episode_reward = episode_reward+reward
+    # Restart if the attempt ends
     if terminated or truncated:
                 
-     print(f"Attempt {episode_number}: score = {episode_reward:.2f}")
+     print(f"Attempt {episode_number}: score = {episode_reward:.2f}") #.2f rounds up the decimal numbers
 
      episode_reward = 0
      episode_number += 1
-     observation, info = env.reset()
-# Close the game window.
+     observation = env.reset()
+     info = env.reset()
+# Close the game window
 env.close()
