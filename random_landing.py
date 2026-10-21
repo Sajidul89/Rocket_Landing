@@ -4,8 +4,7 @@ import gymnasium as gym
 env = gym.make("LunarLander-v3", render_mode="human")
 
 # Start a new landing attempt.
-observation = env.reset()
-info = env.reset()
+observation, info = env.reset()
 
 episode_reward = 0
 episode_number = 1
